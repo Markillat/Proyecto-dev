@@ -25,3 +25,8 @@ password: password123
 ## Ejecutar vue
 
 ```npm run dev```
+
+## Documentacion API V1
+```
+https://documenter.getpostman.com/view/18190091/2s93RUuCBL
+```
