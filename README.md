@@ -4,6 +4,9 @@
 usuario: jquilca@gmail.com
 password: password123
 
+##ejcutar migrate
+
+php atisan migrate
 
 ## ejecutar seed
 
