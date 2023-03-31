@@ -1,6 +1,6 @@
 # Proyecto-dev
 
-## usuario
+## usuario del sistema
 usuario: jquilca
 password: password123
 
