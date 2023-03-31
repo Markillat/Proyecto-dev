@@ -16,7 +16,7 @@ password: password123
 ## Librerias
 ```composer install```
 
-npm install
+```npm install```
 
 ## Ejecutar Laravel
 
