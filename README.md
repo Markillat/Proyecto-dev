@@ -1,7 +1,7 @@
 # Proyecto-dev
 
 ## usuario del sistema
-usuario: jquilca
+usuario: jquilca@gmail.com
 password: password123
 
 
