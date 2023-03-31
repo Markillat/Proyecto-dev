@@ -1,6 +1,6 @@
 # Proyecto-dev
 
-## usuario del sistema
+## Usuario del sistema
 ```
 usuario: jquilca@gmail.com
 password: password123
