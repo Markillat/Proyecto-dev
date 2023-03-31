@@ -1,0 +1,19 @@
+# Ignorar archivos de configuración
+.env
+.env.*
+
+# Ignorar directorios de dependencias
+/node_modules
+
+# Ignorar archivos generados
+/public/build
+/public/storage
+/storage/*
+
+# Ignorar archivos de caché
+*.log
+*.cache
+*.swp
+
+/vendor
+
