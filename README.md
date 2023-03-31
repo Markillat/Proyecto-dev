@@ -9,3 +9,13 @@ password: password123
 
 php artisan db:seed
 
+## Librerias
+composer install
+
+npm install
+
+## Ejecutar Laravel
+php artisan serve
+
+## Ejecutar vue
+npm run dev
