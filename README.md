@@ -1,24 +1,27 @@
 # Proyecto-dev
 
 ## usuario del sistema
+```
 usuario: jquilca@gmail.com
 password: password123
+```
+## Ejecutar migrate
 
-##ejcutar migrate
+```php atisan migrate```
 
-php atisan migrate
+## Ejecutar seed
 
-## ejecutar seed
-
-php artisan db:seed
+```php artisan db:seed```
 
 ## Librerias
-composer install
+```composer install```
 
 npm install
 
 ## Ejecutar Laravel
-php artisan serve
+
+```php artisan serve```
 
 ## Ejecutar vue
-npm run dev
+
+```npm run dev```
