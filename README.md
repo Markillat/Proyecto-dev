@@ -1,11 +1,5 @@
 # Proyecto-dev
 
-## Usuario del sistema
-```
-usuario: jquilca@gmail.com
-password: password123
-```
-
 ## Librerias
 ```composer install```
 
