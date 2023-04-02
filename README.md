@@ -5,6 +5,12 @@
 usuario: jquilca@gmail.com
 password: password123
 ```
+
+## Librerias
+```composer install```
+
+```npm install```
+
 ## Ejecutar migrate
 
 ```php atisan migrate```
@@ -13,16 +19,13 @@ password: password123
 
 ```php artisan db:seed```
 
-## Librerias
-```composer install```
-
-```npm install```
-
 ## Ejecutar Laravel
 
 ```php artisan serve```
 
 ## Ejecutar vue
+
+``ǹpm run build ```
 
 ```npm run dev```
 
