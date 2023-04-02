@@ -13,7 +13,7 @@ password: password123
 
 ## Ejecutar migrate
 
-```php atisan migrate```
+```php artisan migrate```
 
 ## Ejecutar seed
 
