@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 
-class WorkStationFactory extends Factory
+class WorkstationFactory extends Factory
 {
     /**
      * Define the model's default state.

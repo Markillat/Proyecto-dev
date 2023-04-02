@@ -7,7 +7,7 @@
 # Ignorar archivos generados
 /public/build
 /public/storage
-/storage/*
+/storage/*.key
 
 # Ignorar archivos de caché
 *.log
@@ -16,3 +16,5 @@
 
 /vendor
 
+npm-debug.log
+yarn-error.log
