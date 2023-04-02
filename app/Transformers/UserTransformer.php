@@ -3,11 +3,9 @@
 namespace App\Transformers;
 
 use App\Models\User;
-use App\Models\Workstation;
-use Carbon\Carbon;
 use League\Fractal\TransformerAbstract;
 
-class UserTransformer  extends TransformerAbstract
+class UserTransformer extends TransformerAbstract
 {
 
     public function transform(User $user): array
@@ -31,9 +29,6 @@ class UserTransformer  extends TransformerAbstract
             'identificador' => 'id',
             'nombre' => 'name',
             'correo' => 'email',
-            //'esVerificado' => 'verified',
-           // 'esAdministrador' => 'admin',
-            //'fechaEliminacion' => 'deleted_at',
             'clave' => 'password'
         ];
 
@@ -46,9 +41,6 @@ class UserTransformer  extends TransformerAbstract
             'id' => 'identificador',
             'name' => 'nombre',
             'email' => 'correo',
-           // 'verified' => 'esVerificado',
-           // 'admin' => 'esAdministrador',
-          //  'deleted_at' => 'fechaEliminacion',
             'password' => 'clave'
         ];
 

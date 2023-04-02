@@ -7,11 +7,9 @@
                 <div class="card" style=" width: auto!important; margin: 0!important;">
                     <div class="card-body">
                         @if(Auth::check())
-                            @if(session('data'))
-                                <index-app data-array="{{ json_encode(session('data')) }}"
+                            @if(session('access_token'))
+                                <index-app access-token="{{ json_encode(session('access_token')) }}"
                                            tab="{{ 'second' }}"></index-app>
-                            @else
-                                <index-app data-array="{{ null }}" tab="{{ 'second' }}"></index-app>
                             @endif
                         @else
                             {{ 'Iniciar Session!!' }}

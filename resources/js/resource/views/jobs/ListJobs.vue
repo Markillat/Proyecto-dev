@@ -45,19 +45,16 @@ export default {
         },
         async getItems() {
             const token = JSON.parse(localStorage.getItem('access_token'));
-            console.log(token)
+
+            console.info(token)
 
             try {
                 await axios.get('api/v1/workstations', {headers: {Authorization: `Bearer ${token}`}})
                     .then(response => response.data)
                     .then(response => {
-                        console.log(response.data)
-
                         this.items = response.data
                     })
                     .catch(error => {
-                        console.log(error.response.data.error);
-
                         Swal.fire({
                             icon: 'error',
                             title: 'Error',

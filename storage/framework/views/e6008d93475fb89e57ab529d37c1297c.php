@@ -5,11 +5,9 @@
                 <div class="card" style=" width: auto!important; margin: 0!important;">
                     <div class="card-body">
                         <?php if(Auth::check()): ?>
-                            <?php if(session('data')): ?>
-                                <index-app data-array="<?php echo e(json_encode(session('data'))); ?>"
+                            <?php if(session('access_token')): ?>
+                                <index-app access-token="<?php echo e(json_encode(session('access_token'))); ?>"
                                            tab="<?php echo e('first'); ?>"></index-app>
-                            <?php else: ?>
-                                <index-app data-array="<?php echo e(null); ?>" tab="<?php echo e('first'); ?>"></index-app>
                             <?php endif; ?>
                         <?php else: ?>
                             <?php echo e('Iniciar Session!!'); ?>

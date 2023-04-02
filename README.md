@@ -1,10 +1,4 @@
-# Proyecto-dev
-
-## Usuario del sistema
-```
-usuario: jquilca@gmail.com
-password: password123
-```
+# Proyecto-dev - OAUTH2
 
 ## Librerias
 ```composer install```
@@ -13,7 +7,7 @@ password: password123
 
 ## Ejecutar migrate
 
-```php atisan migrate```
+```php artisan migrate```
 
 ## Ejecutar seed
 
@@ -25,11 +19,25 @@ password: password123
 
 ## Ejecutar vue
 
-``ǹpm run build ```
+```npm run build```
 
 ```npm run dev```
+
+## Ejecutar
+``` php artisan passport:install ```
+
+## Copiar el Id y el Secret y pegar en .env
+
+```
+PASSPORT_CLIENT_ID_PERSONAL
+PASSPORT_CLIENT_SECRET_PERSONAL
+
+PASSPORT_CLIENT_ID_PASSWORD
+PASSPORT_CLIENT_SECRET_PASSWORD
+```
 
 ## Documentacion API V1
 ```
 https://documenter.getpostman.com/view/18190091/2s93RUuCBL
 ```
+
