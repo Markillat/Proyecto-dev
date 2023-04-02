@@ -25,7 +25,7 @@ password: password123
 
 ## Ejecutar vue
 
-``ǹpm run build ```
+```ǹpm run build```
 
 ```npm run dev```
 
