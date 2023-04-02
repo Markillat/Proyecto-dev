@@ -1,4 +1,4 @@
-# Proyecto-dev - OAUTH2
+# Proyecto-dev
 
 ## Librerias
 ```composer install```
@@ -22,6 +22,9 @@
 ```npm run build```
 
 ```npm run dev```
+
+## Ejecutar
+``` php artisan passport:install ```
 
 ## Ejecutar
 ``` php artisan passport:install ```
