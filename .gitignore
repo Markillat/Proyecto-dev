@@ -21,3 +21,6 @@ npm-debug.log
 yarn-error.log
 
 public/storage/
+composer.lock
+package-lock.json
+public/hot

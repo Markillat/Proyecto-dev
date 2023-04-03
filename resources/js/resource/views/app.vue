@@ -1,13 +1,13 @@
 <template>
     <div class="col-md-12" v-if="isParentReady">
         <div v-if="tab === 'first'">
-            <Jobs/>
+            <Jobs />
         </div>
         <div v-else-if="tab === 'second'">
-            <Postulant/>
+            <Postulant />
         </div>
         <div v-else>
-            <createJob/>
+            <createJob />
         </div>
     </div>
 </template>
@@ -36,9 +36,9 @@ export default {
     async mounted() {
         if (this.accessToken) {
             this.removeToken();
-            this.isParentReady = true;
             await this.saveToken(this.accessToken);
             this.saveRole();
+            this.isParentReady = true;
         }
     },
     methods: {
