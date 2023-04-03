@@ -3,7 +3,7 @@
         <div class="card-columns">
             <card v-for="item in paginatedItems" :key="item.identificador" :title="item.titulo" :description="item.detalles" @click="showCard(item)"/>
         </div>
-        <nav aria-label="Page navigation example">
+        <nav aria-label="Page navigation example" v-if="items.length > 0">
             <ul class="pagination">
                 <li class="page-item" :class="{ disabled: currentPage === 1 }">
                     <a class="page-link" href="#" @click.prevent="currentPage--">Anterior</a>

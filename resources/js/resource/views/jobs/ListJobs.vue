@@ -14,26 +14,7 @@ export default {
     },
     data() {
         return {
-            items: [
-                {
-                    identificador: 1,
-                    titulo: 'Desarrollador web',
-                    detalles: 'Buscamos un desarrollador web con experiencia en Vue.js',
-                    salario: '$30,000 - $40,000'
-                },
-                {
-                    identificador: 2,
-                    titulo: 'Diseñador gráfico',
-                    detalles: 'Buscamos un diseñador gráfico con experiencia en Adobe Illustrator',
-                    salario: '$25,000 - $35,000'
-                },
-                {
-                    identificador: 3,
-                    titulo: 'Analista de datos',
-                    detalles: 'Buscamos un analista de datos con experiencia en SQL',
-                    salario: '$35,000 - $45,000'
-                }
-            ]
+            items: []
         }
     },
     mounted() {
