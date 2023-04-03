@@ -9,7 +9,8 @@
                         @if(Auth::check())
                             @if(session('access_token'))
                                 <index-app access-token="{{ json_encode(session('access_token')) }}"
-                                           tab="{{ 'tree' }}"></index-app>
+                                           tab="{{ 'tree' }}"
+                                           is-admin="{{ (auth()->user()->role === 'admin') }}"></index-app>
                             @endif
                         @else
                             {{ 'Iniciar Session!!' }}

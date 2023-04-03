@@ -14,6 +14,9 @@ class UserController extends ApiController
         $this->middleware('client.credentials')->only(['store']);
         $this->middleware('auth:api')->except(['store']);
         $this->middleware('scope:admin')->only('*');
+        $this->middleware('can:viewUsers,' . User::class)->only('index');
+        $this->middleware('can:createUser,' . User::class)->only('store');
+        $this->middleware('can:showUser,' . User::class)->only('show');
     }
 
     public function index(): JsonResponse

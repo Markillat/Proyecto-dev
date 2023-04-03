@@ -65,7 +65,11 @@ export default {
                         let text;
 
                         if (Object.keys(this.errors).length > 0) {
-                            text = "Completo los campos"
+                            if (error.response.data.code === 403) {
+                                text = error.response.data.error
+                            } else {
+                                text = "Completo los campos"
+                            }
                         } else {
                             text = error.response.data.error
                         }

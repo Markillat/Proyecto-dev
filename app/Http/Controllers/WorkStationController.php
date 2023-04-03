@@ -21,6 +21,7 @@ class WorkStationController extends ApiController
         $this->middleware('auth:api')->except(['index', 'show']);
         $this->middleware('transform.input:' . WorkstationTransformer::class)->only(['store', 'update']);
         $this->middleware('scope:postulant,admin')->only('index', 'show');
+        $this->middleware('can:createJob,' . Workstation::class)->only('store');
     }
 
     public function index(): JsonResponse
