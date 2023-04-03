@@ -20,7 +20,7 @@ import createJob from "./jobs/CreateJob.vue";
 
 export default {
     name: "app",
-    props: ['accessToken', 'tab'],
+    props: ['accessToken', 'tab', 'isAdmin'],
     data() {
         return {
             token_response: null,
@@ -38,11 +38,16 @@ export default {
             this.removeToken();
             this.isParentReady = true;
             await this.saveToken(this.accessToken);
+            this.saveRole();
         }
     },
     methods: {
         async saveToken(token) {
             localStorage.setItem('access_token', token);
+        },
+        saveRole() {
+            localStorage.removeItem('isAdmin');
+            localStorage.setItem('isAdmin', this.isAdmin);
         },
         removeToken() {
             localStorage.removeItem('access_token');

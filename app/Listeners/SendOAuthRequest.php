@@ -26,7 +26,7 @@ class SendOAuthRequest implements ShouldQueue
     {
         $user = $event->user;
 
-        $scopes = ['read-jobs', 'read-postulations'];
+        $scopes = [$user->role];
 
         $access_token = $user->createToken('Token Name', $scopes)->accessToken;
 

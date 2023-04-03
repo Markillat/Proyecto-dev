@@ -26,9 +26,6 @@
 ## Ejecutar
 ``` php artisan passport:install ```
 
-## Ejecutar
-``` php artisan passport:install ```
-
 ## Copiar el Id y el Secret y pegar en .env
 
 ```
@@ -37,6 +34,13 @@ PASSPORT_CLIENT_SECRET_PERSONAL
 
 PASSPORT_CLIENT_ID_PASSWORD
 PASSPORT_CLIENT_SECRET_PASSWORD
+```
+
+## Usuario Admin
+
+```
+user: test@example.com
+password: password
 ```
 
 ## Documentacion API V1

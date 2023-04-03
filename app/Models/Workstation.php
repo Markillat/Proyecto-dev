@@ -5,7 +5,13 @@ namespace App\Models;
 use App\Transformers\WorkstationTransformer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @method static latest()
+ * @method static inRandomOrder()
+ * @method static create(array $all)
+ */
 class Workstation extends Model
 {
     use HasFactory;
@@ -24,6 +30,11 @@ class Workstation extends Model
         'publication_date' => 'date',
         'closing_date' => 'date'
     ];
-    public $transformer = WorkstationTransformer::class;
 
+    public string $transformer = WorkstationTransformer::class;
+
+    public function applicants(): HasMany
+    {
+        return $this->hasMany(Applicant::class);
+    }
 }

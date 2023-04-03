@@ -20,6 +20,12 @@ class WorkstationTransformer extends TransformerAbstract
             'publicacion' => $workstation->publication_date ? $workstation->publication_date->format('Y-m-d') : Carbon::now()->format('Y-m-d'),
             'cerrado' => $workstation->closing_date ? $workstation->closing_date->format('Y-m-d') : Carbon::now()->format('Y-m-d'),
             'estado' => $workstation->status,
+            'cantidadPostulantes' => count($workstation->applicants),
+            'postulantes' => $workstation->applicants()->get()->transform(function ($row) {
+                return [
+                    'nombre' => $row->user->name
+                ];
+            }),
             'links' => [
                 [
                     'rel' => 'self',

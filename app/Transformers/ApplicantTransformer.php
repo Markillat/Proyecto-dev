@@ -11,12 +11,13 @@ class ApplicantTransformer extends TransformerAbstract
     public function transform(Applicant $applicant): array
     {
         return [
-            'identificador' => (int)$applicant->id,
-            'usuarioId' => (int)$applicant->user_id,
-            'nombreCompleto' => $applicant->user->name,
-            'celular' => $applicant->phone,
+            'identificador' => $applicant->id,
+            'usuarioId' => $applicant->user_id,
+            'nombreCompleto' => $applicant->fullName,
+            'trabajoPostulado' => $applicant->workstation->title ?? null,
+            'mensaje' => $applicant->message,
             'cv' => $applicant->curriculum_vitae,
-            'estado' => $applicant->send_Status,
+            'estado' => $applicant->status_job,
             'links' => [
                 [
                     'rel' => 'self',
@@ -31,9 +32,10 @@ class ApplicantTransformer extends TransformerAbstract
         $attributes = [
             'identificador' => 'id',
             'usuario' => 'user_id',
-            'celular' => 'phone',
+            'trabajo' => 'workstation_id',
+            'mensaje' => 'message',
             'cv' => 'curriculum_vitae',
-            'estado' => 'send_status',
+            'estado' => 'status_job',
         ];
 
         return $attributes[$index] ?? null;
@@ -44,9 +46,10 @@ class ApplicantTransformer extends TransformerAbstract
         $attributes = [
             'id' => 'identificador',
             'user_id' => 'usuario',
-            'phone' => 'celular',
+            'workstation_id' => 'trabajo',
+            'message' => 'mensaje',
             'curriculum_vitae' => 'cv',
-            'send_status' => 'estado',
+            'status_job' => 'estado',
         ];
 
         return $attributes[$index] ?? null;

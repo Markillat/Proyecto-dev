@@ -33,11 +33,21 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     @if(Auth::check())
-                        <li style="list-style: none; margin: 10px;"><a href="{{ route('list-jobs') }}">Lista de Trabajos</a></li>
+                        <li style="list-style: none; margin: 10px;"><a href="{{ route('list-jobs') }}">
+                                Lista de Trabajos</a>
+                        </li>
 
-                        <li style="list-style: none; margin: 10px;"><a href="{{ route('list-postulations') }}">Listado de postulaciones</a></li>
+                        @if((auth()->user()->role === 'postulant'))
+                            <li style="list-style: none; margin: 10px;"><a href="{{ route('list-postulations') }}">
+                                    Listado de postulaciones</a>
+                            </li>
+                        @endif
 
-                        <li style="list-style: none; margin: 10px;"><a href="{{ route('create-job') }}">Registro de trabajo</a></li>
+                        @if((auth()->user()->role === 'admin'))
+                            <li style="list-style: none; margin: 10px;"><a href="{{ route('create-job') }}">
+                                    Registro de
+                                    trabajo</a></li>
+                        @endif
                     @endif
                 </ul>
 

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Transformers\UserTransformer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
@@ -12,6 +12,7 @@ use Laravel\Passport\HasApiTokens;
 
 /**
  * @method static inRandomOrder()
+ * @method static create(array $array)
  */
 class User extends Authenticatable
 {
@@ -24,11 +25,16 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'lastname',
         'email',
         'password',
+        'number_document',
+        'type_document',
+        'birth_date',
+        'role'
     ];
 
-    public $transformer = UserTransformer::class;
+    public string $transformer = UserTransformer::class;
 
     /**
      * The attributes that should be hidden for serialization.
@@ -48,6 +54,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function applicant(): HasOne
+    {
+        return $this->hasOne(Applicant::class);
+    }
 
     public static function generateVerificationToken(): string
     {

@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('applicants', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('phone');
-            $table->text('curriculum_vitae');
-            $table->string('send_status')->default(true);
+            $table->foreignId('workstation_id')->nullable();
+            $table->text('message')->nullable();
+            $table->text('curriculum_vitae')->nullable();
+            $table->enum('status_job', ['pendiente', 'enviado', 'rechazado', 'finalista'])->default('enviado');
             $table->timestamps();
         });
     }

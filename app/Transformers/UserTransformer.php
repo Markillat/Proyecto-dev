@@ -13,7 +13,11 @@ class UserTransformer extends TransformerAbstract
         return [
             'identificador' => (int)$user->id,
             'nombre' => (string)$user->name,
+            'apellido' => (string)$user->lastname,
             'correo' => (string)$user->email,
+            'numero_documento' => (string)$user->number_document,
+            'tipo_documento' => (string)$user->type_document,
+            'fecha_nacimiento' => (string)$user->birth_date,
             'links' => [
                 [
                     'rel' => 'self',
@@ -28,8 +32,12 @@ class UserTransformer extends TransformerAbstract
         $attributes = [
             'identificador' => 'id',
             'nombre' => 'name',
+            'apellido' => 'lastname',
             'correo' => 'email',
-            'clave' => 'password'
+            'clave' => 'password',
+            'numero_documento' => 'number_document',
+            'tipo_documento' => 'type_document',
+            'fecha_nacimiento' => 'birth_date',
         ];
 
         return $attributes[$index] ?? null;
@@ -40,8 +48,12 @@ class UserTransformer extends TransformerAbstract
         $attributes = [
             'id' => 'identificador',
             'name' => 'nombre',
+            'lastname' => 'apellido',
             'email' => 'correo',
-            'password' => 'clave'
+            'password' => 'clave',
+            'number_document' => 'numero_documento',
+            'type_document' => 'tipo_documento',
+            'birth_date' => 'fecha_nacimiento',
         ];
 
         return $attributes[$index] ?? null;

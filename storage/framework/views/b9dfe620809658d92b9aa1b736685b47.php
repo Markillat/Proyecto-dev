@@ -34,11 +34,21 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <?php if(Auth::check()): ?>
-                        <li style="list-style: none; margin: 10px;"><a href="<?php echo e(route('list-jobs')); ?>">Lista de Trabajos</a></li>
+                        <li style="list-style: none; margin: 10px;"><a href="<?php echo e(route('list-jobs')); ?>">
+                                Lista de Trabajos</a>
+                        </li>
 
-                        <li style="list-style: none; margin: 10px;"><a href="<?php echo e(route('list-postulations')); ?>">Listado de postulaciones</a></li>
+                        <?php if((auth()->user()->role === 'postulant')): ?>
+                            <li style="list-style: none; margin: 10px;"><a href="<?php echo e(route('list-postulations')); ?>">
+                                    Listado de postulaciones</a>
+                            </li>
+                        <?php endif; ?>
 
-                        <li style="list-style: none; margin: 10px;"><a href="<?php echo e(route('create-job')); ?>">Registro de trabajo</a></li>
+                        <?php if((auth()->user()->role === 'admin')): ?>
+                            <li style="list-style: none; margin: 10px;"><a href="<?php echo e(route('create-job')); ?>">
+                                    Registro de
+                                    trabajo</a></li>
+                        <?php endif; ?>
                     <?php endif; ?>
                 </ul>
 

@@ -29,10 +29,8 @@ class AuthServiceProvider extends ServiceProvider
         Passport::refreshTokensExpireIn(Carbon::now()->addDays(30));
 
         Passport::tokensCan([
-            'read-postulations' => 'Lista de postulaciones',
-            'read-jobs' => 'Lista de trabajos',
-            'edit-job' => 'Editar trabajo',
-            'manage-acount' => 'Obtener informacion de la cuenta',
+            'admin' => 'Administrador',
+            'postulant' => 'Postulante',
         ]);
     }
 }

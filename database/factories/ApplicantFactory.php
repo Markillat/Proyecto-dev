@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\Workstation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Http\UploadedFile;
 
@@ -19,9 +20,10 @@ class ApplicantFactory extends Factory
 
         return [
             'user_id' => User::inRandomOrder()->first()->id,
-            'phone' => fake()->phoneNumber,
+            'workstation_id' => Workstation::inRandomOrder()->first()->id,
+            'message' => fake()->paragraph(),
             'curriculum_vitae' => $curriculum_vitae,
-            'send_status' => fake()->randomElement(['pending', 'sent', 'rejected']),
+            'status_job' => fake()->randomElement(['pendiente', 'enviado', 'rechazado', 'finalista']),
         ];
     }
 }

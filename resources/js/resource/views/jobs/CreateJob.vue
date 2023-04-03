@@ -9,14 +9,17 @@
                     <div class="form-group">
                         <label for="title">Título:</label>
                         <input type="text" class="form-control" id="title" v-model="form.titulo">
+                        <div v-if="errors.titulo" class="text-danger">{{ errors.titulo[0] }}</div>
                     </div>
                     <div class="form-group">
                         <label for="description">Descripción:</label>
                         <textarea class="form-control" id="description" v-model="form.detalles"></textarea>
+                        <div v-if="errors.detalles" class="text-danger">{{ errors.detalles[0] }}</div>
                     </div>
                     <div class="form-group">
                         <label for="salary">Salario:</label>
                         <input type="number" class="form-control" id="salary" v-model="form.salario">
+                        <div v-if="errors.salario" class="text-danger">{{ errors.salario[0] }}</div>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Crear trabajo</button>
@@ -37,7 +40,8 @@ export default {
                 titulo: '',
                 detalles: '',
                 salario: ''
-            }
+            },
+            errors: {}
         }
     },
     methods: {
@@ -57,11 +61,19 @@ export default {
                     })
                     .catch(error => {
                         console.log(error.response.data.error);
+                        this.errors = error.response.data.error;
+                        let text;
+
+                        if (Object.keys(this.errors).length > 0) {
+                            text = "Completo los campos"
+                        } else {
+                            text = error.response.data.error
+                        }
 
                         Swal.fire({
                             icon: 'error',
                             title: 'Error',
-                            text: error.response.data.error,
+                            text: text
                         })
                     });
             } catch (e) {

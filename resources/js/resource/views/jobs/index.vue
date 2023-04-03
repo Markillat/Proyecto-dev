@@ -1,7 +1,7 @@
 <template>
     <div class="col-md-12">
         <div class="card card-primary" style=" width: auto!important; margin: 0!important;">
-            <div class="card-header bg-info">
+            <div class="card-header bg-info d-flex justify-content-between">
                 <h3 class="my-0">Lista de trabajos</h3>
             </div>
             <div class="card-body">
@@ -21,20 +21,18 @@
 <script>
 import ListJobs from "./ListJobs.vue";
 import DetailJob from "./DetailJob.vue";
-import {ElTabs, ElTabPane} from 'element-plus';
 
 export default {
-    props: ['dataArray'],
     data() {
         return {
             token_response: null,
             activeTab: '1',
-            record: null
+            record: null,
+            showModal: false
         }
     },
     components: {
-        ListJobs, DetailJob, ElTabs,
-        ElTabPane
+        ListJobs, DetailJob
     },
     methods: {
         clickEvent(event) {

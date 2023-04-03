@@ -1,10 +1,15 @@
 <template>
     <div class="col-md-12">
-        <div class="job-detail">
+        <div class="job-detail" v-show="record">
             <h2>{{ job.titulo }}</h2>
             <p>{{ job.detalles }}</p>
-            <p>Salary: {{ job.salario }}</p>
-            <button @click="applyForJob">Aplicar a este trabajo</button>
+            <p>Salario: {{ job.salario }}</p>
+            <p v-if="isAdmin">Cantidad postulantes: {{ job.cantidadPostulantes }}</p>
+            <p v-if="isAdmin">Postulantes:</p>
+            <ul v-if="isAdmin">
+                <li v-for="(postulante, index) in job.postulantes" :key="index">{{ postulante.nombre }}</li>
+            </ul>
+            <button v-if="!isAdmin" @click="applyForJob">Aplicar a este trabajo</button>
         </div>
 
         <!-- Modal -->
@@ -12,20 +17,22 @@
             <div class="modal-content">
                 <div class="justify-content-between d-flex">
                     <h5>Postulación del empleo</h5>
-                    <span class="close" @click="showModal = false">&times;</span>
+                    <span class="close" @click="close">&times;</span>
                 </div>
 
                 <form autocomplete="off" @submit.prevent="submit">
                     <label for="cv">Subir CV:</label>
                     <br>
-                    <input id="cv" type="file" @change="handleFileUpload">
+                    <input id="cv" type="file" ref="file" @change="handleFileUpload">
+                    <div v-if="errors.cv" class="text-danger">{{ errors.cv[0] }}</div>
                     <br>
                     <br>
                     <label for="description">Mensaje:</label>
                     <textarea id="description" v-model="form.message"></textarea>
+                    <div v-if="errors.mensaje" class="text-danger">{{ errors.mensaje[0] }}</div>
                     <button type="primary" native-type="submit" class="btn btn-primary" style="margin: 6px;">Enviar
                     </button>
-                    <button @click="showModal = false" class="btn btn-danger">Cerrar</button>
+                    <button @click="close" class="btn btn-danger">Cerrar</button>
                 </form>
             </div>
         </div>
@@ -45,7 +52,9 @@ export default {
             form: {
                 load_cv: null,
                 message: null
-            }
+            },
+            errors: {},
+            isAdmin: false
         }
     },
     watch: {
@@ -56,40 +65,34 @@ export default {
         }
     },
     mounted() {
-        this.fetchJob()
+        this.isAdmin = localStorage.getItem('isAdmin') === '1';
     },
     methods: {
-        fetchJob() {
-            this.job = {
-                identificador: 1,
-                titulo: 'Trabajo de prueba',
-                detalles: 'Descripción del trabajo de prueba',
-                publicacion: '2022-04-01',
-                salario: 1000
-            }
-        },
         applyForJob() {
             this.showModal = true;
         },
         async submit() {
             const token = JSON.parse(localStorage.getItem('access_token'));
-            console.log(token)
+
+            const formData = new FormData();
+            formData.append('cv', this.$refs.file.files[0]);
+            formData.append('trabajo', this.job.identificador);
+            formData.append('mensaje', this.form.message);
 
             try {
-                if (this.form.message) {
-                    Swal.fire({
-                        icon: 'succress',
-                        title: 'Correcto',
-                        text: 'Te postulaste correctamente',
+                await axios.post('api/v1/applications', formData, {headers: {Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data'}})
+                    .then(response => response.data)
+                    .then(response => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Correcto',
+                            text: response.data.message,
+                        })
                     })
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Datos incompletos',
-                        text: 'Completa los datos requeridos',
-                    })
-                }
-
+                    .catch(error => {
+                        console.log(error.response.data.error);
+                        this.errors = error.response.data.error;
+                    });
             } catch (e) {
                 console.log(e)
             }
@@ -98,6 +101,17 @@ export default {
             const file = event.target.files[0];
             const formData = new FormData();
             formData.append('pdf', file);
+        },
+        initForm() {
+            this.form = {
+                load_cv: null,
+                message: null
+            }
+            this.errors = {}
+        },
+        close() {
+            this.showModal = false;
+            this.initForm();
         }
     }
 };
@@ -169,5 +183,36 @@ export default {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+.job-detail {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.job-detail h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.job-detail p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.job-detail button {
+    background-color: #0066cc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.job-detail button:hover {
+    background-color: #0052a3;
 }
 </style>

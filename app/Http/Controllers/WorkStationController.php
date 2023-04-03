@@ -20,7 +20,7 @@ class WorkStationController extends ApiController
         $this->middleware('client.credentials')->only(['index', 'show']);
         $this->middleware('auth:api')->except(['index', 'show']);
         $this->middleware('transform.input:' . WorkstationTransformer::class)->only(['store', 'update']);
-        $this->middleware('scope:read-jobs')->only('index');
+        $this->middleware('scope:postulant,admin')->only('index', 'show');
     }
 
     public function index(): JsonResponse
@@ -38,11 +38,7 @@ class WorkStationController extends ApiController
         DB::beginTransaction();
 
         try {
-            $job = new Workstation;
-            $job->title = $request['title'];
-            $job->description = $request['description'];
-            $job->salary = $request['salary'];
-            $job->save();
+            Workstation::create($request->all());
 
             DB::commit();
 

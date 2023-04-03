@@ -13,9 +13,10 @@ class UserController extends ApiController
     {
         $this->middleware('client.credentials')->only(['store']);
         $this->middleware('auth:api')->except(['store']);
+        $this->middleware('scope:admin')->only('*');
     }
 
-    public function index()
+    public function index(): JsonResponse
     {
         $users = User::all();
 
